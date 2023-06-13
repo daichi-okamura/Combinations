@@ -23,27 +23,31 @@ export default function NumberSelectors(props: NumberSelectorsProps) {
   }
 
   return (
-    <div class="h-8 ml-8" ref={ ref }>
+    <div class="" ref={ ref }>
       <label class="text-gray-700 text-sm font-semibold">{ label }</label>
-      <div class="flex">
-        <NumberSelector name={ groupName } number={ 1 } textColorOnSelected={ textColorOnSelected }
-                        numberChangeHandler={ setNumber }/>
-        <NumberSelector name={ groupName } number={ 2 } textColorOnSelected={ textColorOnSelected }
-                        numberChangeHandler={ setNumber }/>
-        <NumberSelector name={ groupName } number={ 3 } textColorOnSelected={ textColorOnSelected }
-                        numberChangeHandler={ setNumber }/>
-        <NumberSelector name={ groupName } number={ 4 } textColorOnSelected={ textColorOnSelected }
-                        numberChangeHandler={ setNumber }/>
-        <NumberSelector name={ groupName } number={ 5 } textColorOnSelected={ textColorOnSelected }
-                        numberChangeHandler={ setNumber }/>
-        <NumberSelector name={ groupName } number={ 6 } textColorOnSelected={ textColorOnSelected }
-                        numberChangeHandler={ setNumber }/>
-        <NumberSelector name={ groupName } number={ 7 } textColorOnSelected={ textColorOnSelected }
-                        numberChangeHandler={ setNumber }/>
-        <NumberSelector name={ groupName } number={ 8 } textColorOnSelected={ textColorOnSelected }
-                        numberChangeHandler={ setNumber }/>
-        <NumberSelector name={ groupName } number={ 9 } textColorOnSelected={ textColorOnSelected }
-                        numberChangeHandler={ setNumber }/>
+      <div class="flex flex-wrap gap-x-1">
+        <div class="flex gap-1">
+          <NumberSelector name={ groupName } number={ 1 } textColorOnSelected={ textColorOnSelected }
+                          numberChangeHandler={ setNumber }/>
+          <NumberSelector name={ groupName } number={ 2 } textColorOnSelected={ textColorOnSelected }
+                          numberChangeHandler={ setNumber }/>
+          <NumberSelector name={ groupName } number={ 3 } textColorOnSelected={ textColorOnSelected }
+                          numberChangeHandler={ setNumber }/>
+          <NumberSelector name={ groupName } number={ 4 } textColorOnSelected={ textColorOnSelected }
+                          numberChangeHandler={ setNumber }/>
+          <NumberSelector name={ groupName } number={ 5 } textColorOnSelected={ textColorOnSelected }
+                          numberChangeHandler={ setNumber }/>
+        </div>
+        <div class="flex gap-1">
+          <NumberSelector name={ groupName } number={ 6 } textColorOnSelected={ textColorOnSelected }
+                          numberChangeHandler={ setNumber }/>
+          <NumberSelector name={ groupName } number={ 7 } textColorOnSelected={ textColorOnSelected }
+                          numberChangeHandler={ setNumber }/>
+          <NumberSelector name={ groupName } number={ 8 } textColorOnSelected={ textColorOnSelected }
+                          numberChangeHandler={ setNumber }/>
+          <NumberSelector name={ groupName } number={ 9 } textColorOnSelected={ textColorOnSelected }
+                          numberChangeHandler={ setNumber }/>
+        </div>
       </div>
     </div>
   );
@@ -75,13 +79,19 @@ function NumberSelector(props: NumberSelectorProps) {
                numberChangeHandler(target.value, target.checked);
              } }
       />
-      { checked
-        ? <label for={ id }
-                 class={ `select-none h-8 cursor-pointer rounded-lg border-2 border-gray-200 px-3 pt-[2px] mr-1 font-bold text-${ textColorOnSelected }-400` }
-        >{ number }</label>
-        : <label for={ id }
-                 class={ `select-none h-8 cursor-pointer rounded-lg border-2 border-gray-200 px-3 pt-[2px] mr-1 font-bold text-gray-200` }
-        >{ number }</label> }
+      <label for={ id } class="rounded-xl border-2 border-gray-200">
+        <div class="inline-block w-[60px] h-[60px] select-none cursor-pointer">
+          { checked ? <>
+            <div class={ `mt-3 text-center text-2xl font-bold text-${ textColorOnSelected }-600` }>
+              { number }
+            </div>
+          </> : <>
+            <div class="mt-3 text-center text-2xl font-bold text-gray-200">
+              { number }
+            </div>
+          </> }
+        </div>
+      </label>
     </div>
   );
 }
