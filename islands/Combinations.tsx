@@ -26,41 +26,50 @@ export default function Combinations(props: CombinationsProps) {
   }, [ count, sum, inclusionNumbers, exclusionNumbers ]);
 
   return (
-    <div class="bg-white rounded-xl shadow-lg shadow-black p-3 w-[600px]">
-      <div class="ml-4">
+    <div class="bg-white rounded-xl shadow-lg shadow-black p-3">
+      <div class="flex flex-wrap gap-2">
 
-        <div class="flex">
-          <NumberBox
-            label="count(n)"
-            getter={ () => count }
-            setter={ setCount }
-          />
-          <NumberSelectors
-            label="inclusion"
-            textColorOnSelected="blue"
-            current={ inclusionNumbers }
-            setter={ setInclusionNumbers }
-          />
+        <div class="">
+          <div class="">
+            <NumberBox
+              label="count(n)"
+              getter={ () => count }
+              setter={ setCount }
+            />
+          </div>
+          <div class="">
+            <NumberBox
+              label="sum(x)"
+              getter={ () => sum }
+              setter={ setSum }
+            />
+          </div>
         </div>
 
-        <div class="flex">
-          <NumberBox
-            label="sum(x)"
-            getter={ () => sum }
-            setter={ setSum }
-          />
-          <NumberSelectors
-            label="exclusion"
-            textColorOnSelected="red"
-            current={ exclusionNumbers }
-            setter={ setExclusionNumbers }
-          />
+        <div class="">
+          <div class="">
+            <NumberSelectors
+              label="inclusion"
+              textColorOnSelected="blue"
+              current={ inclusionNumbers }
+              setter={ setInclusionNumbers }
+            />
+          </div>
+          <div class="">
+            <NumberSelectors
+              label="exclusion"
+              textColorOnSelected="red"
+              current={ exclusionNumbers }
+              setter={ setExclusionNumbers }
+            />
+          </div>
         </div>
+      </div>
 
-        <div class="ml-2 mt-5 font-bold text-2xl text-gray-600">
-          <p>{ combinations.map(c => c.toString()).join(", ") }</p>
-        </div>
-
+      <div>
+          <div class="mt-5 font-bold text-2xl">
+            <p>{ combinations.map(c => c.toString()).join(", ") }</p>
+          </div>
       </div>
     </div>
   );
