@@ -9,7 +9,7 @@ export default function Index() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
       </Head>
 
-      <body class="bg-blue-100 touch-manipulation">
+      <body class="bg-blue-100">
         <header class="bg-black text-white  p-4 pl-5 mb-8 italic h-auto">
           <h1 class="font-bold text-3xl text-white">
             Combination<span class="text-red-500">s</span>
