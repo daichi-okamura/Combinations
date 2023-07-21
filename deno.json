@@ -7,5 +7,14 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
+  },
+  "fmt": {
+    "include": [
+      "routes/**/*",
+      "islands/**/*",
+      "components/**/*",
+      "dev.ts",
+      "main.tsx"
+    ]
   }
 }
