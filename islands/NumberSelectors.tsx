@@ -25,7 +25,7 @@ export default function NumberSelectors(props: NumberSelectorsProps) {
   return (
     <div class="" ref={ref}>
       <p class="text-gray-700 text-sm font-semibold m-1">{label}</p>
-      <div class="flex flex-wrap gap-x-1">
+      <div class="flex flex-wrap gap-1">
         <div class="flex gap-1">
           <NumberSelector
             name={groupName}
