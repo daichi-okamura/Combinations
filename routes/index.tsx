@@ -10,14 +10,14 @@ export default function Index() {
       </Head>
 
       <body class="bg-blue-100">
-        <header class="bg-black text-white  p-4 pl-5 mb-8 italic h-auto">
-          <h1 class="font-bold text-3xl text-white">
+        <header class="bg-black text-white italic box-border p-2">
+          <h1 class="font-bold text-3xl text-white m-1">
             Combination<span class="text-red-500">s</span>
           </h1>
-          <p>
-            This app will find all the combinations of{" "}
-            <span class="text-red-500 text-2xl mx-1">n</span>{" "}
-            non-overlapping numbers from 1 to 9 that sum to{" "}
+          <p class="m-1">
+            This app will find all the combinations of
+            <span class="text-red-500 text-2xl mx-1">n</span>
+            non-overlapping numbers from 1 to 9 that sum to
             <span class="text-red-500 text-2xl mx-1">x</span>.
           </p>
         </header>
