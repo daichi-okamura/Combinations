@@ -13,7 +13,7 @@ export default function NumberBox(props: NumberBoxProps) {
 
       <div class="flex flex-row flex-nowrap h-16">
         <button
-          class="flex justify-center items-center w-16 select-none bg-gray-200 hover:bg-gray-400 rounded-l-xl cursor-pointer focus:outline-none touch-manipulation"
+          class="flex justify-center items-center w-16 bg-gray-200 hover:bg-gray-400 rounded-l-xl cursor-pointer focus:outline-none touch-manipulation"
           onclick={() => setter((prev) => Math.max(Number(prev) - 1, 1))}
         >
           <p class="text-center text-3xl font-thin">−</p>
@@ -30,7 +30,7 @@ export default function NumberBox(props: NumberBoxProps) {
         </div>
 
         <button
-          class="flex justify-center items-center w-16 select-none bg-gray-200 hover:bg-gray-400 rounded-r-xl cursor-pointer focus:outline-none touch-manipulation"
+          class="flex justify-center items-center w-16 bg-gray-200 hover:bg-gray-400 rounded-r-xl cursor-pointer focus:outline-none touch-manipulation"
           onclick={() => setter((prev) => Number(prev) + 1)}
         >
           <p class="text-center text-3xl font-thin">+</p>
