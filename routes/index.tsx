@@ -1,6 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import Combinations from "../islands/Combinations.tsx";
 import IconBrandGithubFilled from "icons/brand-github.tsx";
+import range from "../libs/range.ts";
 
 export default function Index() {
   return (
@@ -24,24 +25,11 @@ export default function Index() {
         </header>
 
         <main class="flex flex-wrap gap-2 p-2">
-          <div class="flex-auto">
-            <Combinations count={2} sum={10} />
-          </div>
-          <div class="flex-auto">
-            <Combinations count={2} sum={10} />
-          </div>
-          <div class="flex-auto">
-            <Combinations count={2} sum={10} />
-          </div>
-          <div class="flex-auto">
-            <Combinations count={2} sum={10} />
-          </div>
-          <div class="flex-auto">
-            <Combinations count={2} sum={10} />
-          </div>
-          <div class="flex-auto">
-            <Combinations count={2} sum={10} />
-          </div>
+          {[...range(1, 6)].map((i) => (
+            <div class="flex-auto">
+              <Combinations key={i} count={2} sum={10} />
+            </div>
+          ))}
         </main>
 
         <footer class="p-2">
