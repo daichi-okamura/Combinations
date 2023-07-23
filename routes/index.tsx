@@ -42,16 +42,10 @@ export default function Index() {
           <div class="flex-auto">
             <Combinations count={2} sum={10} />
           </div>
-          <div class="flex-auto">
-            <Combinations count={2} sum={10} />
-          </div>
-          <div class="flex-auto">
-            <Combinations count={2} sum={10} />
-          </div>
         </main>
 
         <footer class="p-2">
-          <div class="flex justify-center items-center gap-2">
+          <div class="flex justify-end items-center gap-2">
             <a href="https://fresh.deno.dev">
               <img
                 width="197"
