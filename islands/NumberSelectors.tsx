@@ -118,16 +118,14 @@ function NumberSelector(props: NumberSelectorProps) {
         />
         <label
           for={id}
-          class="flex justify-center items-center rounded-xl border-2 border-gray-200 w-full"
+          class="flex justify-center items-center rounded-xl border-2 border-gray-200 cursor-pointer w-full"
         >
-          <div class="select-none cursor-pointer">
-            <div
-              class={tw`text-2xl font-bold ${
-                checked ? `text-${textColorOnSelected}-600` : "text-gray-200"
-              }`}
-            >
-              {number}
-            </div>
+          <div
+            class={tw`text-2xl font-bold ${
+              checked ? `text-${textColorOnSelected}-600` : "text-gray-200"
+            }`}
+          >
+            {number}
           </div>
         </label>
       </div>
