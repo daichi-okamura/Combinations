@@ -1,12 +1,13 @@
 import { useRef, useState } from "preact/hooks";
 import { tw } from "twind";
 import range from "../libs/range.ts";
+import { SelectedNumbers } from "../libs/combinations.ts";
 
 type NumberSelectorsProps = {
   label: string;
   textColorOnSelected: string;
-  current: string;
-  setter: (x: number[]) => void;
+  current: SelectedNumbers;
+  setter: (selectedNumbers: SelectedNumbers) => void;
 };
 
 export default function NumberSelectors(props: NumberSelectorsProps) {
@@ -14,12 +15,11 @@ export default function NumberSelectors(props: NumberSelectorsProps) {
   const ref = useRef<HTMLInputElement>(null!);
   const { label, textColorOnSelected, current, setter } = props;
 
-  function setNumber(number: string, checked: boolean): void {
-    const index = current.indexOf(number);
-    if (checked && index < 0) {
-      setter(current + number);
-    } else if (!checked && index >= 0) {
-      setter(current.replace(number, ""));
+  function setNumber(value: string, checked: boolean): void {
+    if (checked) {
+      setter(current.add(value));
+    } else {
+      setter(current.remove(value));
     }
   }
 
@@ -56,7 +56,7 @@ type NumberSelectorProps = {
   name: string;
   number: number;
   textColorOnSelected: string;
-  numberChangeHandler: (number: number, checked: boolean) => void;
+  numberChangeHandler: (value: string, checked: boolean) => void;
 };
 
 function NumberSelector(props: NumberSelectorProps) {
@@ -73,8 +73,9 @@ function NumberSelector(props: NumberSelectorProps) {
           name={name}
           value={number}
           class="hidden"
-          oninput={(e) => {
+          onInput={(e) => {
             const { target } = e;
+            if (!(target instanceof HTMLInputElement)) return;
             setChecked(target.checked);
             numberChangeHandler(target.value, target.checked);
           }}

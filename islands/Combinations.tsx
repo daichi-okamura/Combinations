@@ -1,28 +1,36 @@
 import { useEffect, useState } from "preact/hooks";
-import { Combination, findCombinations } from "../libs/combinations.ts";
+import {
+  Combination,
+  findCombinations,
+  SelectedNumbers,
+} from "../libs/combinations.ts";
 import NumberBox from "./NumberBox.tsx";
 import NumberSelectors from "./NumberSelectors.tsx";
 
 type CombinationsProps = { count: number; sum: number };
 
 export default function Combinations(props: CombinationsProps) {
-  const [count, setCount] = useState<string | number>(props.count);
-  const [sum, setSum] = useState<string | number>(props.sum);
+  const [count, setCount] = useState<number>(props.count);
+  const [sum, setSum] = useState<number>(props.sum);
   const [combinations, setCombinations] = useState<Combination[]>([]);
-  const [inclusionNumbers, setInclusionNumbers] = useState<string>("");
-  const [exclusionNumbers, setExclusionNumbers] = useState<string>("");
+  const [inclusionNumbers, setInclusionNumbers] = useState<SelectedNumbers>(
+    new SelectedNumbers(),
+  );
+  const [exclusionNumbers, setExclusionNumbers] = useState<SelectedNumbers>(
+    new SelectedNumbers(),
+  );
 
   useEffect(() => {
     let results = findCombinations(count as number, sum as number);
 
-    const target1 = inclusionNumbers.split("");
+    const target1 = inclusionNumbers.values;
     results = results.filter((c) => c.includeAll(target1));
 
-    const target2 = exclusionNumbers.split("");
+    const target2 = exclusionNumbers.values;
     results = results.filter((c) => !c.any(target2));
 
     setCombinations(results);
-  }, [count, sum, inclusionNumbers, exclusionNumbers]);
+  }, [count, sum, [...inclusionNumbers.values], [...exclusionNumbers.values]]);
 
   return (
     <div class="bg-white rounded-xl shadow-lg shadow-black p-3">
@@ -31,21 +39,23 @@ export default function Combinations(props: CombinationsProps) {
           <div class="">
             <NumberBox
               label="count(n)"
-              getter={() => count}
-              setter={setCount}
+              value={count}
+              decrement={() => setCount((p: number) => Math.max(1, p - 1))}
+              increment={() => setCount((p: number) => Math.min(9, p + 1))}
             />
           </div>
           <div class="">
             <NumberBox
               label="sum(x)"
-              getter={() => sum}
-              setter={setSum}
+              value={sum}
+              decrement={() => setSum((p: number) => Math.max(1, p - 1))}
+              increment={() => setSum((p: number) => Math.min(45, p + 1))}
             />
           </div>
         </div>
 
-        <div class="">
-          <div class="">
+        <div>
+          <div>
             <NumberSelectors
               label="inclusion"
               textColorOnSelected="blue"
@@ -53,7 +63,7 @@ export default function Combinations(props: CombinationsProps) {
               setter={setInclusionNumbers}
             />
           </div>
-          <div class="">
+          <div>
             <NumberSelectors
               label="exclusion"
               textColorOnSelected="red"
