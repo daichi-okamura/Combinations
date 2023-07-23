@@ -1,5 +1,6 @@
 import { Head } from "$fresh/runtime.ts";
 import Combinations from "../islands/Combinations.tsx";
+import IconBrandGithubFilled from "icons/brand-github.tsx";
 
 export default function Index() {
   return (
@@ -10,7 +11,7 @@ export default function Index() {
       </Head>
 
       <body class="bg-blue-100">
-        <header class="bg-black text-white italic box-border p-2">
+        <header class="bg-black text-white italic p-2">
           <h1 class="font-bold text-3xl text-white m-1">
             Combination<span class="text-red-500">s</span>
           </h1>
@@ -48,6 +49,22 @@ export default function Index() {
             <Combinations count={2} sum={10} />
           </div>
         </main>
+
+        <footer class="p-2">
+          <div class="flex justify-center items-center gap-2">
+            <a href="https://fresh.deno.dev">
+              <img
+                width="197"
+                height="37"
+                src="https://fresh.deno.dev/fresh-badge-dark.svg"
+                alt="Made with Fresh"
+              />
+            </a>
+            <a href="https://github.com/daichi-okamura/combinations">
+              <IconBrandGithubFilled class="w-8 h-8" />
+            </a>
+          </div>
+        </footer>
       </body>
     </>
   );
