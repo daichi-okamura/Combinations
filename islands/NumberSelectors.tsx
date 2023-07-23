@@ -1,5 +1,6 @@
 import { useRef, useState } from "preact/hooks";
 import { tw } from "twind";
+import range from "../libs/range.ts";
 
 type NumberSelectorsProps = {
   label: string;
@@ -27,62 +28,24 @@ export default function NumberSelectors(props: NumberSelectorsProps) {
       <p class="text-gray-700 text-sm font-semibold m-1">{label}</p>
       <div class="flex flex-wrap gap-1">
         <div class="flex gap-1">
-          <NumberSelector
-            name={groupName}
-            number={1}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
-          />
-          <NumberSelector
-            name={groupName}
-            number={2}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
-          />
-          <NumberSelector
-            name={groupName}
-            number={3}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
-          />
-          <NumberSelector
-            name={groupName}
-            number={4}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
-          />
-          <NumberSelector
-            name={groupName}
-            number={5}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
-          />
+          {[...range(1, 5)].map((i) => (
+            <NumberSelector
+              name={groupName}
+              number={i}
+              textColorOnSelected={textColorOnSelected}
+              numberChangeHandler={setNumber}
+            />
+          ))}
         </div>
         <div class="flex gap-1">
-          <NumberSelector
-            name={groupName}
-            number={6}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
-          />
-          <NumberSelector
-            name={groupName}
-            number={7}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
-          />
-          <NumberSelector
-            name={groupName}
-            number={8}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
-          />
-          <NumberSelector
-            name={groupName}
-            number={9}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
-          />
+          {[...range(6, 9)].map((i) => (
+            <NumberSelector
+              name={groupName}
+              number={i}
+              textColorOnSelected={textColorOnSelected}
+              numberChangeHandler={setNumber}
+            />
+          ))}
         </div>
       </div>
     </div>
