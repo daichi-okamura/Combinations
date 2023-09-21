@@ -1,5 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
-import { Combination, findCombinations } from "../libs/combinations.ts";
+import { Combination, findCombinations } from "../../libs/combinations.ts";
 import NumberBox from "./NumberBox.tsx";
 import NumberSelectors from "./NumberSelectors.tsx";
 

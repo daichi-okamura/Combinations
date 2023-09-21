@@ -1,4 +1,4 @@
-import Combinations from "../islands/Combinations.tsx";
+import Combinations from "./(_islands)/Combinations.tsx";
 
 export default function Index() {
   return (
