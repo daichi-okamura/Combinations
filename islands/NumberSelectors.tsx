@@ -1,5 +1,4 @@
 import { useRef, useState } from "preact/hooks";
-import { tw } from "twind";
 
 type NumberSelectorsProps = {
   label: string;
@@ -23,10 +22,10 @@ export default function NumberSelectors(props: NumberSelectorsProps) {
   }
 
   return (
-    <div class="" ref={ref}>
-      <p class="text-gray-700 text-sm font-semibold m-1">{label}</p>
-      <div class="flex flex-wrap gap-1">
-        <div class="flex gap-1">
+    <div className="" ref={ref}>
+      <p className="text-gray-700 text-sm font-semibold m-1">{label}</p>
+      <div className="flex flex-wrap gap-1">
+        <div className="flex gap-1">
           <NumberSelector
             name={groupName}
             number={1}
@@ -58,7 +57,7 @@ export default function NumberSelectors(props: NumberSelectorsProps) {
             numberChangeHandler={setNumber}
           />
         </div>
-        <div class="flex gap-1">
+        <div className="flex gap-1">
           <NumberSelector
             name={groupName}
             number={6}
@@ -103,27 +102,27 @@ function NumberSelector(props: NumberSelectorProps) {
 
   return (
     <>
-      <div class="flex h-16 w-16">
+      <div className="flex h-16 w-16">
         <input
           type="checkbox"
           id={id}
           name={name}
           value={number}
-          class="hidden"
-          oninput={(e) => {
+          className="hidden"
+          onInput={(e) => {
             const { target } = e;
             setChecked(target.checked);
             numberChangeHandler(target.value, target.checked);
           }}
         />
         <label
-          for={id}
-          class="flex justify-center items-center rounded-xl border-2 border-gray-200 cursor-pointer w-full"
+          htmlFor={id}
+          className="flex justify-center items-center rounded-xl border(2 gray-200) cursor-pointer w-full"
         >
           <div
-            class={tw`text-2xl font-bold ${
-              checked ? `text-${textColorOnSelected}-600` : "text-gray-200"
-            }`}
+            className={`font-bold text(2xl ${
+              checked ? `${textColorOnSelected}-600` : "gray-200"
+            })`}
           >
             {number}
           </div>
