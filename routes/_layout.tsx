@@ -12,7 +12,7 @@ export default function Layout({ Component }: LayoutProps) {
           This app will find all the combinations of
           <span className="text(red-500 2xl) mx-1">n</span>
           non-overlapping numbers from 1 to 9 that sum to
-          <span className="text(-)red-500 2xl) mx-1">x</span>.
+          <span className="text(red-500 2xl) mx-1">x</span>.
         </p>
       </header>
 
