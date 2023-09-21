@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact/hooks";
+import { batch, useSignal } from "@preact/signals";
 import { Combination, findCombinations } from "../../libs/combinations.ts";
 import NumberBox from "./NumberBox.tsx";
 import NumberSelectors from "./NumberSelectors.tsx";
@@ -6,23 +6,17 @@ import NumberSelectors from "./NumberSelectors.tsx";
 type CombinationsProps = { count: number; sum: number };
 
 export default function Combinations(props: CombinationsProps) {
-  const [count, setCount] = useState<string | number>(props.count);
-  const [sum, setSum] = useState<string | number>(props.sum);
-  const [combinations, setCombinations] = useState<Combination[]>([]);
-  const [inclusionNumbers, setInclusionNumbers] = useState<string>("");
-  const [exclusionNumbers, setExclusionNumbers] = useState<string>("");
-
-  useEffect(() => {
-    let results = findCombinations(count as number, sum as number);
-
-    const target1 = inclusionNumbers.split("");
-    results = results.filter((c) => c.includeAll(target1));
-
-    const target2 = exclusionNumbers.split("");
-    results = results.filter((c) => !c.any(target2));
-
-    setCombinations(results);
-  }, [count, sum, inclusionNumbers, exclusionNumbers]);
+  const count = useSignal<number>(props.count);
+  const sum = useSignal<number>(props.sum);
+  const includes = useSignal<number[]>([]);
+  const excludes = useSignal<number[]>([]);
+  const combinations = useSignal<Combination[]>([]);
+  batch(() => {
+    let results = findCombinations(count.value, sum.value);
+    results = results.filter((c) => c.includeAll(includes.value));
+    results = results.filter((c) => !c.any(excludes.value));
+    combinations.value = results;
+  });
 
   return (
     <div className="bg-white rounded-xl shadow(lg black) p-3">
@@ -31,15 +25,13 @@ export default function Combinations(props: CombinationsProps) {
           <div>
             <NumberBox
               label="count(n)"
-              getter={() => count}
-              setter={setCount}
+              value={count}
             />
           </div>
           <div>
             <NumberBox
               label="sum(x)"
-              getter={() => sum}
-              setter={setSum}
+              value={sum}
             />
           </div>
         </div>
@@ -49,16 +41,14 @@ export default function Combinations(props: CombinationsProps) {
             <NumberSelectors
               label="include"
               textColorOnSelected="blue"
-              current={inclusionNumbers}
-              setter={setInclusionNumbers}
+              selected={includes}
             />
           </div>
           <div>
             <NumberSelectors
               label="exclude"
               textColorOnSelected="red"
-              current={exclusionNumbers}
-              setter={setExclusionNumbers}
+              selected={excludes}
             />
           </div>
         </div>
@@ -66,7 +56,7 @@ export default function Combinations(props: CombinationsProps) {
 
       <div>
         <div className="mt-5 font-bold text-2xl">
-          <p>{combinations.map((c) => c.toString()).join(", ")}</p>
+          <p>{combinations.value.map((c) => c.toString()).join(", ")}</p>
         </div>
       </div>
     </div>

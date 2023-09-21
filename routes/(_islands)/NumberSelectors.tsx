@@ -1,23 +1,25 @@
+// deno-lint-ignore-file
+import { Signal } from "@preact/signals-core";
 import { useRef, useState } from "preact/hooks";
 
 type NumberSelectorsProps = {
   label: string;
   textColorOnSelected: string;
-  current: string;
-  setter: (x: number[]) => void;
+  selected: Signal<number[]>;
 };
 
 export default function NumberSelectors(props: NumberSelectorsProps) {
   const groupName = crypto.randomUUID();
   const ref = useRef<HTMLInputElement>(null!);
-  const { label, textColorOnSelected, current, setter } = props;
+  const { label, textColorOnSelected, selected } = props;
 
-  function setNumber(number: string, checked: boolean): void {
-    const index = current.indexOf(number);
-    if (checked && index < 0) {
-      setter(current + number);
-    } else if (!checked && index >= 0) {
-      setter(current.replace(number, ""));
+  function setNumber(number: number, checked: boolean): void {
+    const alreadyExists = selected.value.includes(number);
+    if (checked && !alreadyExists) {
+      selected.value = [...selected.value, number];
+    }
+    if (!checked && alreadyExists) {
+      selected.value = selected.value.filter((n) => n !== number);
     }
   }
 
@@ -110,9 +112,9 @@ function NumberSelector(props: NumberSelectorProps) {
           value={number}
           className="hidden"
           onInput={(e) => {
-            const { target } = e;
-            setChecked(target.checked);
-            numberChangeHandler(target.value, target.checked);
+            const checkbox = e.target as HTMLInputElement;
+            setChecked(checkbox.checked);
+            numberChangeHandler(Number(checkbox.value), checkbox.checked);
           }}
         />
         <label
