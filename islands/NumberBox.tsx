@@ -1,3 +1,6 @@
+import IconPlus from "icons/plus.tsx";
+import IconMinus from "icons/minus.tsx";
+
 type NumberBoxProps = {
   label: string;
   getter: () => string;
@@ -16,7 +19,7 @@ export default function NumberBox(props: NumberBoxProps) {
           className="flex justify-center items-center w-16 bg(gray-200 hover:gray-400) rounded-l-xl cursor-pointer focus:outline-none touch-manipulation"
           onClick={() => setter((prev) => Math.max(Number(prev) - 1, 1))}
         >
-          <p className="text(center 3xl) font-thin">−</p>
+          <IconMinus class="w-7 h-7" />
         </button>
 
         <div className="flex justify-center items-center w-16">
@@ -33,7 +36,7 @@ export default function NumberBox(props: NumberBoxProps) {
           className="flex justify-center items-center w-16 bg-gray-200 hover:bg-gray-400 rounded-r-xl cursor-pointer focus:outline-none touch-manipulation"
           onClick={() => setter((prev) => Number(prev) + 1)}
         >
-          <p className="text-center text-3xl font-thin">+</p>
+          <IconPlus class="w-7 h-7" />
         </button>
       </div>
     </>
