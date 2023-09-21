@@ -20,7 +20,7 @@ export default function Combinations(props: CombinationsProps) {
 
   return (
     <div className="bg-white rounded-xl shadow(lg black) p-3">
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-4">
         <div>
           <div>
             <NumberBox

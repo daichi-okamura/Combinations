@@ -1,7 +1,7 @@
 // deno-lint-ignore-file
 import { Signal } from "@preact/signals-core";
-import IconPlus from "icons/plus.tsx";
-import IconMinus from "icons/minus.tsx";
+import IconCirclePlus from "icons/circle-plus.tsx";
+import IconCircleMinus from "icons/circle-minus.tsx";
 
 type NumberBoxProps = {
   label: string;
@@ -11,7 +11,10 @@ type NumberBoxProps = {
 export default function NumberBox(props: NumberBoxProps) {
   const { label, value } = props;
   const increment = () => value.value++;
-  const decrement = () => value.value--;
+  const decrement = () => {
+    if (value.value === 1) return;
+    value.value--;
+  }
 
   return (
     <>
@@ -19,26 +22,26 @@ export default function NumberBox(props: NumberBoxProps) {
 
       <div className="flex flex(row nowrap) h-16">
         <button
-          className="flex justify-center items-center w-16 bg(gray-200 hover:gray-400) rounded-l-xl cursor-pointer focus:outline-none touch-manipulation"
+          className="flex items-center"
           onClick={decrement}
         >
-          <IconMinus class="w-7 h-7" />
+          <IconCircleMinus class="w-16 h-16 text(gray-200 hover:gray-400)" />
         </button>
 
-        <div className="flex justify-center items-center w-16">
+        <div className="flex items-center w-16">
           <input
             type="text"
-            className="bg-gray-100 font-bold h-full w-full text(center 2xl)"
+            className="font-bold h-full w-full text(center 4xl) bg-white"
             value={value.value}
             disabled
           />
         </div>
 
         <button
-          className="flex justify-center items-center w-16 bg-gray-200 hover:bg-gray-400 rounded-r-xl cursor-pointer focus:outline-none touch-manipulation"
+          className="flex items-center"
           onClick={increment}
         >
-          <IconPlus class="w-7 h-7" />
+          <IconCirclePlus class="w-16 h-16 text(gray-200 hover:gray-400)" />
         </button>
       </div>
     </>
