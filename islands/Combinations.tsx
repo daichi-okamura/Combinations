@@ -25,17 +25,17 @@ export default function Combinations(props: CombinationsProps) {
   }, [count, sum, inclusionNumbers, exclusionNumbers]);
 
   return (
-    <div class="bg-white rounded-xl shadow-lg shadow-black p-3">
-      <div class="flex flex-wrap gap-2">
-        <div class="">
-          <div class="">
+    <div className="bg-white rounded-xl shadow(lg black) p-3">
+      <div className="flex flex-wrap gap-2">
+        <div>
+          <div>
             <NumberBox
               label="count(n)"
               getter={() => count}
               setter={setCount}
             />
           </div>
-          <div class="">
+          <div>
             <NumberBox
               label="sum(x)"
               getter={() => sum}
@@ -44,18 +44,18 @@ export default function Combinations(props: CombinationsProps) {
           </div>
         </div>
 
-        <div class="">
-          <div class="">
+        <div>
+          <div className="">
             <NumberSelectors
-              label="inclusion"
+              label="include"
               textColorOnSelected="blue"
               current={inclusionNumbers}
               setter={setInclusionNumbers}
             />
           </div>
-          <div class="">
+          <div>
             <NumberSelectors
-              label="exclusion"
+              label="exclude"
               textColorOnSelected="red"
               current={exclusionNumbers}
               setter={setExclusionNumbers}
@@ -65,7 +65,7 @@ export default function Combinations(props: CombinationsProps) {
       </div>
 
       <div>
-        <div class="mt-5 font-bold text-2xl">
+        <div className="mt-5 font-bold text-2xl">
           <p>{combinations.map((c) => c.toString()).join(", ")}</p>
         </div>
       </div>
