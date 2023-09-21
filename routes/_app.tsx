@@ -1,6 +1,6 @@
-import { AppProps } from "$fresh/server.ts";
+import { defineApp } from "$fresh/server.ts";
 
-export default function App({ Component }: AppProps) {
+export default defineApp((req, ctx) => {
   return (
     <html>
       <head>
@@ -9,8 +9,8 @@ export default function App({ Component }: AppProps) {
         <title>Combinations</title>
       </head>
       <body className="bg-blue-100 select-none">
-        <Component />
+        <ctx.Component />
       </body>
     </html>
   );
-}
+});

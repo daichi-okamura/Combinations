@@ -1,7 +1,7 @@
-import { LayoutProps } from "$fresh/server.ts";
+import { defineLayout } from "$fresh/server.ts";
 import IconBrandGithubFilled from "icons/brand-github.tsx";
 
-export default function Layout({ Component }: LayoutProps) {
+export default defineLayout((_, ctx) => {
   return (
     <div>
       <header className="bg-black text-white italic p-2">
@@ -16,7 +16,7 @@ export default function Layout({ Component }: LayoutProps) {
         </p>
       </header>
 
-      <Component />
+      <ctx.Component />
 
       <footer className="p-2">
         <div className="flex justify-end items-center gap-2">
@@ -35,4 +35,4 @@ export default function Layout({ Component }: LayoutProps) {
       </footer>
     </div>
   );
-}
+});
