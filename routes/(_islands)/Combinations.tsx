@@ -1,7 +1,7 @@
 import { batch, useSignal } from "@preact/signals";
-import { Combination, findCombinations } from "../../libs/combinations.ts";
-import NumberBox from "./NumberBox.tsx";
-import NumberSelectors from "./NumberSelectors.tsx";
+import { Combination, findCombinations } from "../../utils/combinations.ts";
+import Counter from "./Counter.tsx";
+import Selector from "./Selector.tsx";
 
 type CombinationsProps = { count: number; sum: number };
 
@@ -11,6 +11,7 @@ export default function Combinations(props: CombinationsProps) {
   const includes = useSignal<number[]>([]);
   const excludes = useSignal<number[]>([]);
   const combinations = useSignal<Combination[]>([]);
+
   batch(() => {
     let results = findCombinations(count.value, sum.value);
     results = results.filter((c) => c.includeAll(includes.value));
@@ -23,13 +24,13 @@ export default function Combinations(props: CombinationsProps) {
       <div className="flex flex-wrap gap-4">
         <div>
           <div>
-            <NumberBox
+            <Counter
               label="count(n)"
               value={count}
             />
           </div>
           <div>
-            <NumberBox
+            <Counter
               label="sum(x)"
               value={sum}
             />
@@ -37,17 +38,17 @@ export default function Combinations(props: CombinationsProps) {
         </div>
 
         <div>
-          <div className="">
-            <NumberSelectors
+          <div>
+            <Selector
               label="include"
-              textColorOnSelected="blue"
+              selectedColor="blue"
               selected={includes}
             />
           </div>
           <div>
-            <NumberSelectors
+            <Selector
               label="exclude"
-              textColorOnSelected="red"
+              selectedColor="red"
               selected={excludes}
             />
           </div>
