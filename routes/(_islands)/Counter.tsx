@@ -3,18 +3,17 @@ import { Signal } from "@preact/signals-core";
 import IconCirclePlus from "icons/circle-plus.tsx";
 import IconCircleMinus from "icons/circle-minus.tsx";
 
-type NumberBoxProps = {
+type CounterProps = {
   label: string;
   value: Signal<number>;
 };
 
-export default function NumberBox(props: NumberBoxProps) {
-  const { label, value } = props;
+export default function Counter({ label, value }: CounterProps) {
   const increment = () => value.value++;
   const decrement = () => {
     if (value.value === 1) return;
     value.value--;
-  }
+  };
 
   return (
     <>
@@ -25,7 +24,7 @@ export default function NumberBox(props: NumberBoxProps) {
           className="flex items-center"
           onClick={decrement}
         >
-          <IconCircleMinus class="w-16 h-16 text(gray-200 hover:gray-400)" />
+          <IconCircleMinus class="w-16 h-16 text(gray-200 hover:gray-300)" />
         </button>
 
         <div className="flex items-center w-16">
@@ -41,7 +40,7 @@ export default function NumberBox(props: NumberBoxProps) {
           className="flex items-center"
           onClick={increment}
         >
-          <IconCirclePlus class="w-16 h-16 text(gray-200 hover:gray-400)" />
+          <IconCirclePlus class="w-16 h-16 text(gray-200 hover:gray-300)" />
         </button>
       </div>
     </>

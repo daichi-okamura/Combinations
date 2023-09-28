@@ -1,6 +1,6 @@
 // deno-lint-ignore-file
 import { Signal } from "@preact/signals-core";
-import { useRef, useState } from "preact/hooks";
+import { useState } from "preact/hooks";
 import IconCircleNumber1 from "icons/circle-number-1.tsx";
 import IconCircleNumber2 from "icons/circle-number-2.tsx";
 import IconCircleNumber3 from "icons/circle-number-3.tsx";
@@ -10,19 +10,18 @@ import IconCircleNumber6 from "icons/circle-number-6.tsx";
 import IconCircleNumber7 from "icons/circle-number-7.tsx";
 import IconCircleNumber8 from "icons/circle-number-8.tsx";
 import IconCircleNumber9 from "icons/circle-number-9.tsx";
+import { nextGroupNumber } from "../../utils/group-number.ts";
 
-type NumberSelectorsProps = {
+type SelectorProps = {
   label: string;
-  textColorOnSelected: string;
   selected: Signal<number[]>;
+  selectedColor: string;
 };
 
-export default function NumberSelectors(props: NumberSelectorsProps) {
-  const groupName = crypto.randomUUID();
-  const ref = useRef<HTMLInputElement>(null!);
-  const { label, textColorOnSelected, selected } = props;
-
-  function setNumber(number: number, checked: boolean): void {
+export default function Selector(
+  { label, selectedColor, selected }: SelectorProps,
+) {
+  function setSelectedNumber(number: number, checked: boolean): void {
     const alreadyExists = selected.value.includes(number);
     if (checked && !alreadyExists) {
       selected.value = [...selected.value, number];
@@ -32,66 +31,68 @@ export default function NumberSelectors(props: NumberSelectorsProps) {
     }
   }
 
+  const groupNumber = nextGroupNumber();
+
   return (
-    <div className="" ref={ref}>
+    <div>
       <p className="text-gray-700 text-sm font-semibold m-1">{label}</p>
       <div className="flex flex-wrap">
         <div className="flex">
-          <NumberSelector
-            name={groupName}
+          <Item
+            groupNumber={groupNumber}
             number={1}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
+            selectedColor={selectedColor}
+            onChangeHandler={setSelectedNumber}
           />
-          <NumberSelector
-            name={groupName}
+          <Item
+            groupNumber={groupNumber}
             number={2}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
+            selectedColor={selectedColor}
+            onChangeHandler={setSelectedNumber}
           />
-          <NumberSelector
-            name={groupName}
+          <Item
+            groupNumber={groupNumber}
             number={3}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
+            selectedColor={selectedColor}
+            onChangeHandler={setSelectedNumber}
           />
-          <NumberSelector
-            name={groupName}
+          <Item
+            groupNumber={groupNumber}
             number={4}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
+            selectedColor={selectedColor}
+            onChangeHandler={setSelectedNumber}
           />
-          <NumberSelector
-            name={groupName}
+          <Item
+            groupNumber={groupNumber}
             number={5}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
+            selectedColor={selectedColor}
+            onChangeHandler={setSelectedNumber}
           />
         </div>
         <div className="flex">
-          <NumberSelector
-            name={groupName}
+          <Item
+            groupNumber={groupNumber}
             number={6}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
+            selectedColor={selectedColor}
+            onChangeHandler={setSelectedNumber}
           />
-          <NumberSelector
-            name={groupName}
+          <Item
+            groupNumber={groupNumber}
             number={7}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
+            selectedColor={selectedColor}
+            onChangeHandler={setSelectedNumber}
           />
-          <NumberSelector
-            name={groupName}
+          <Item
+            groupNumber={groupNumber}
             number={8}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
+            selectedColor={selectedColor}
+            onChangeHandler={setSelectedNumber}
           />
-          <NumberSelector
-            name={groupName}
+          <Item
+            groupNumber={groupNumber}
             number={9}
-            textColorOnSelected={textColorOnSelected}
-            numberChangeHandler={setNumber}
+            selectedColor={selectedColor}
+            onChangeHandler={setSelectedNumber}
           />
         </div>
       </div>
@@ -99,19 +100,22 @@ export default function NumberSelectors(props: NumberSelectorsProps) {
   );
 }
 
-type NumberSelectorProps = {
-  name: string;
+type ItemProps = {
+  groupNumber: string;
   number: number;
-  textColorOnSelected: string;
-  numberChangeHandler: (number: number, checked: boolean) => void;
+  onChangeHandler: (number: number, checked: boolean) => void;
+  selectedColor: string;
 };
 
-function NumberSelector(props: NumberSelectorProps) {
-  const { name, number, textColorOnSelected, numberChangeHandler } = props;
-  const id = `${name}-${number}`;
+function Item(
+  { groupNumber, number, selectedColor, onChangeHandler }: ItemProps,
+) {
+  const id = `item-${groupNumber}-${number}`;
   const [checked, setChecked] = useState<boolean>(false);
 
-  const color = checked ? `text-${textColorOnSelected}-500` : "text-gray-200";
+  const color = checked
+    ? `text-${selectedColor}-500`
+    : "text(gray-200 hover:gray-300)";
   let icon = null;
   switch (number) {
     case 1:
@@ -149,15 +153,15 @@ function NumberSelector(props: NumberSelectorProps) {
       className={`flex items-center cursor-pointer`}
     >
       <input
-        type="checkbox"
         id={id}
-        name={name}
+        type="checkbox"
+        name={groupNumber}
         value={number}
         className="hidden"
         onInput={(e) => {
-          const checkbox = e.target as HTMLInputElement;
-          setChecked(checkbox.checked);
-          numberChangeHandler(Number(checkbox.value), checkbox.checked);
+          const { value, checked: isChecked } = e.target as HTMLInputElement;
+          setChecked(isChecked);
+          onChangeHandler(Number(value), isChecked);
         }}
       />
       {icon}

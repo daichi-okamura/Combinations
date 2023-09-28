@@ -6,8 +6,8 @@ import * as $0 from "./routes/_app.tsx";
 import * as $1 from "./routes/_layout.tsx";
 import * as $2 from "./routes/index.tsx";
 import * as $$0 from "./routes/(_islands)/Combinations.tsx";
-import * as $$1 from "./routes/(_islands)/NumberBox.tsx";
-import * as $$2 from "./routes/(_islands)/NumberSelectors.tsx";
+import * as $$1 from "./routes/(_islands)/Counter.tsx";
+import * as $$2 from "./routes/(_islands)/Selector.tsx";
 
 const manifest = {
   routes: {
@@ -17,8 +17,8 @@ const manifest = {
   },
   islands: {
     "./routes/(_islands)/Combinations.tsx": $$0,
-    "./routes/(_islands)/NumberBox.tsx": $$1,
-    "./routes/(_islands)/NumberSelectors.tsx": $$2,
+    "./routes/(_islands)/Counter.tsx": $$1,
+    "./routes/(_islands)/Selector.tsx": $$2,
   },
   baseUrl: import.meta.url,
 };
