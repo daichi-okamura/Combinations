@@ -113,7 +113,9 @@ function Item(
   const id = `item-${groupNumber}-${number}`;
   const [checked, setChecked] = useState<boolean>(false);
 
-  const color = checked ? `text-${selectedColor}-500` : "text(gray-200 hover:gray-300)";
+  const color = checked
+    ? `text-${selectedColor}-500`
+    : "text(gray-200 hover:gray-300)";
   let icon = null;
   switch (number) {
     case 1:

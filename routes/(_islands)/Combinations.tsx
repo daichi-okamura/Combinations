@@ -1,5 +1,5 @@
 import { batch, useSignal } from "@preact/signals";
-import { Combination, findCombinations } from "../../utils/combinations.ts";
+import { Combination, findCombinations } from "../../utils/combination.ts";
 import Counter from "./Counter.tsx";
 import Selector from "./Selector.tsx";
 
@@ -13,10 +13,12 @@ export default function Combinations(props: CombinationsProps) {
   const combinations = useSignal<Combination[]>([]);
 
   batch(() => {
-    let results = findCombinations(count.value, sum.value);
-    results = results.filter((c) => c.includeAll(includes.value));
-    results = results.filter((c) => !c.any(excludes.value));
-    combinations.value = results;
+    combinations.value = findCombinations(
+      count.value,
+      sum.value,
+      includes.value,
+      excludes.value,
+    );
   });
 
   return (
