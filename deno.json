@@ -10,8 +10,8 @@
   "fmt": {
     "include": [
       "routes/**/*",
-      "islands/**/*",
-      "components/**/*",
+      "tests/**/*",
+      "utils/**/*",
       "dev.ts",
       "main.tsx"
     ],
