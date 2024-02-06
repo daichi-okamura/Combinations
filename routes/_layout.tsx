@@ -5,16 +5,16 @@ export default defineLayout((_, ctx) => {
   return (
     <div>
       <header className="bg-black text-white p-2">
-        <h1 className="font-bold text(3xl white) m-1">
+        <h1 className="font-bold text-3xl text-white m-1">
           <a href="https://github.com/daichi-okamura/combinations">
             Combination<span className="text-red-500">s</span>
           </a>
         </h1>
         <p className="m-1">
           This app will find all the combinations of
-          <span className="text(red-500 2xl) mx-1">n</span>
+          <span className="text-red-500 text-2xl mx-1">n</span>
           non-overlapping numbers from 1 to 9 that sum to
-          <span className="text(red-500 2xl) mx-1">x</span>.
+          <span className="text-red-500 text-2xl mx-1">x</span>.
         </p>
       </header>
 

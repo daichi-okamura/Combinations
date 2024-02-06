@@ -1,10 +1,10 @@
-import { useSignal, useSignalEffect } from "@preact/signals";
-import { Combination, findCombinations } from "../../utils/combination.ts";
-import { Signal } from "@preact/signals-core";
-import IconCircleMinus from "icons/circle-minus.tsx";
-import IconCirclePlus from "icons/circle-plus.tsx";
-import { nextGroupNumber } from "../../utils/group-number.ts";
 import { useState } from "preact/hooks";
+import { useSignal, useSignalEffect } from "@preact/signals";
+import { Signal } from "@preact/signals-core";
+import { Combination, findCombinations } from "../../utils/combination.ts";
+import { nextGroupNumber } from "../../utils/group-number.ts";
+import IconCirclePlus from "icons/circle-plus.tsx";
+import IconCircleMinus from "icons/circle-minus.tsx";
 import IconCircleNumber1 from "icons/circle-number-1.tsx";
 import IconCircleNumber2 from "icons/circle-number-2.tsx";
 import IconCircleNumber3 from "icons/circle-number-3.tsx";
@@ -15,12 +15,12 @@ import IconCircleNumber7 from "icons/circle-number-7.tsx";
 import IconCircleNumber8 from "icons/circle-number-8.tsx";
 import IconCircleNumber9 from "icons/circle-number-9.tsx";
 
-export function Combinations(props: {
-  count: number;
-  sum: number;
+export function Combinations({ defaultCount, defaultSum }: {
+  defaultCount: number;
+  defaultSum: number;
 }) {
-  const count = useSignal<number>(props.count);
-  const sum = useSignal<number>(props.sum);
+  const count = useSignal<number>(defaultCount);
+  const sum = useSignal<number>(defaultSum);
   const includes = useSignal<number[]>([]);
   const excludes = useSignal<number[]>([]);
   const combinations = useSignal<Combination[]>([]);
@@ -35,7 +35,7 @@ export function Combinations(props: {
   });
 
   return (
-    <div className="bg-white rounded-xl shadow(lg black) p-3">
+    <div className="bg-white rounded-xl shadow-lg shadow-black p-3">
       <div className="flex flex-wrap gap-4">
         <div>
           <div>
@@ -91,20 +91,20 @@ export function Counter({ label, value }: {
 
   return (
     <>
-      <p className="text(gray-700 sm) font-semibold m-1">{label}</p>
+      <p className="text-gray-700 text-sm font-semibold m-1">{label}</p>
 
-      <div className="flex flex(row nowrap) h-16">
+      <div className="flex flex-row flex-nowrap h-16">
         <button
           className="flex items-center"
           onClick={decrement}
         >
-          <IconCircleMinus class="w-16 h-16 text(gray-200 hover:gray-300)" />
+          <IconCircleMinus class="w-16 h-16 text-gray-200 hover:text-gray-300" />
         </button>
 
         <div className="flex items-center w-16">
           <input
             type="text"
-            className="font-bold h-full w-full text(center 4xl) bg-white"
+            className="font-bold h-full w-full text-center text-4xl bg-white"
             value={value.value}
             disabled
           />
@@ -114,7 +114,7 @@ export function Counter({ label, value }: {
           className="flex items-center"
           onClick={increment}
         >
-          <IconCirclePlus class="w-16 h-16 text(gray-200 hover:gray-300)" />
+          <IconCirclePlus class="w-16 h-16 text-gray-200 hover:text-gray-300" />
         </button>
       </div>
     </>
@@ -216,7 +216,7 @@ function Item({ groupNumber, number, selectedColor, onChangeHandler }: {
 
   const color = checked
     ? `text-${selectedColor}-500`
-    : "text(gray-200 hover:gray-300)";
+    : "text-gray-200 hover:text-gray-300";
   let icon = null;
   switch (number) {
     case 1:
