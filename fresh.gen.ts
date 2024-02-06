@@ -2,25 +2,26 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $0 from "./routes/_app.tsx";
-import * as $1 from "./routes/_layout.tsx";
-import * as $2 from "./routes/index.tsx";
-import * as $$0 from "./routes/(_islands)/Combinations.tsx";
-import * as $$1 from "./routes/(_islands)/Counter.tsx";
-import * as $$2 from "./routes/(_islands)/Selector.tsx";
+import * as $_app from "./routes/_app.tsx";
+import * as $_layout from "./routes/_layout.tsx";
+import * as $index from "./routes/index.tsx";
+import * as $_islands_Combinations from "./routes/(_islands)/Combinations.tsx";
+import * as $_islands_Counter from "./routes/(_islands)/Counter.tsx";
+import * as $_islands_Selector from "./routes/(_islands)/Selector.tsx";
+import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
-    "./routes/_app.tsx": $0,
-    "./routes/_layout.tsx": $1,
-    "./routes/index.tsx": $2,
+    "./routes/_app.tsx": $_app,
+    "./routes/_layout.tsx": $_layout,
+    "./routes/index.tsx": $index,
   },
   islands: {
-    "./routes/(_islands)/Combinations.tsx": $$0,
-    "./routes/(_islands)/Counter.tsx": $$1,
-    "./routes/(_islands)/Selector.tsx": $$2,
+    "./routes/(_islands)/Combinations.tsx": $_islands_Combinations,
+    "./routes/(_islands)/Counter.tsx": $_islands_Counter,
+    "./routes/(_islands)/Selector.tsx": $_islands_Selector,
   },
   baseUrl: import.meta.url,
-};
+} satisfies Manifest;
 
 export default manifest;
