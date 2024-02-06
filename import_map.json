@@ -9,6 +9,9 @@
     "twind": "https://esm.sh/twind@0.16.19",
     "twind/": "https://esm.sh/twind@0.16.19/",
     "$std/": "https://deno.land/std@0.193.0/",
-    "icons/": "https://deno.land/x/tabler_icons_tsx@0.0.4/tsx/"
+    "icons/": "https://deno.land/x/tabler_icons_tsx@0.0.4/tsx/",
+    "tailwindcss": "npm:tailwindcss@3.4.1",
+    "tailwindcss/": "npm:/tailwindcss@3.4.1/",
+    "tailwindcss/plugin": "npm:/tailwindcss@3.4.1/plugin.js"
   }
 }

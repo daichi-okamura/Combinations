@@ -6,8 +6,6 @@ import * as $_app from "./routes/_app.tsx";
 import * as $_layout from "./routes/_layout.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $_islands_Combinations from "./routes/(_islands)/Combinations.tsx";
-import * as $_islands_Counter from "./routes/(_islands)/Counter.tsx";
-import * as $_islands_Selector from "./routes/(_islands)/Selector.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -18,8 +16,6 @@ const manifest = {
   },
   islands: {
     "./routes/(_islands)/Combinations.tsx": $_islands_Combinations,
-    "./routes/(_islands)/Counter.tsx": $_islands_Counter,
-    "./routes/(_islands)/Selector.tsx": $_islands_Selector,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
