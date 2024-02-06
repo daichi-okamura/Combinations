@@ -1,5 +1,5 @@
 import { defineRoute } from "$fresh/server.ts";
-import Combinations from "./(_islands)/Combinations.tsx";
+import { Combinations } from "./(_islands)/Combinations.tsx";
 
 export default defineRoute((_req, _ctx) => {
   return (
