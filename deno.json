@@ -14,9 +14,6 @@
       "utils/**/*",
       "dev.ts",
       "main.tsx"
-    ],
-    "exclude": [
-      "_fresh"
     ]
   },
   "importMap": "./import_map.json",
@@ -26,13 +23,13 @@
         "fresh",
         "recommended"
       ]
-    },
-    "exclude": [
-      "_fresh"
-    ]
+    }
   },
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
-  }
+  },
+  "exclude": [
+    "**/_fresh/*"
+  ]
 }
